@@ -20,8 +20,8 @@ class SearchEngine {
   /// {"message_id": "i64","user_id": "i64", "guild_id": "i64", "channel_id": "i64", "timestamp": "date", "content": "text"}
   /// ```
   int openOrCreate(String path, String schema) {
-    final _path = Utf8.toUtf8(path);
-    final _schema = Utf8.toUtf8(schema);
+    final _path = path.toNativeUtf8();
+    final _schema = schema.toNativeUtf8();
     return native.se_open_or_create(_path, _schema);
   }
 
@@ -46,7 +46,7 @@ class SearchEngine {
   /// store and index the object
   /// doc: a json format string of the object which want to be indexed
   Future<void> index(String doc) async {
-    final _doc = Utf8.toUtf8(doc);
+    final _doc = doc.toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
@@ -65,10 +65,10 @@ class SearchEngine {
   /// query and search the specified fields
   /// query: keywords used for search
   /// fields: search for the content of which fields
-  Future<String> search(
+  Future<String?> search(
       String query, List fields, int pageStart, int pageSize) async {
-    final _query = Utf8.toUtf8(query);
-    final _fields = Utf8.toUtf8(json.encode(fields));
+    final _query = query.toNativeUtf8();
+    final _fields = json.encode(fields).toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
@@ -86,8 +86,8 @@ class SearchEngine {
   }
 
   /// retrive a specify document by giving a field of i64 and it's value
-  Future<String> getByI64(String field, int id) async {
-    final _field = Utf8.toUtf8(field);
+  Future<String?> getByI64(String field, int id) async {
+    final _field = field.toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
@@ -104,8 +104,8 @@ class SearchEngine {
   }
 
   /// retrive a specify document by giving a field of u64 and it's value
-  Future<String> getByU64(String field, int id) async {
-    final _field = Utf8.toUtf8(field);
+  Future<String?> getByU64(String field, int id) async {
+    final _field = field.toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
@@ -124,7 +124,7 @@ class SearchEngine {
 
   /// remove a specify document by giving a field of u64 and it's value
   Future<void> deleteByU64(String field, int id) async {
-    final _field = Utf8.toUtf8(field);
+    final _field = field.toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
@@ -142,8 +142,8 @@ class SearchEngine {
 
   /// remove a specify document by giving a field of string and it's value
   Future<void> deleteByString(String field, String value) async {
-    final _field = Utf8.toUtf8(field);
-    final _value = Utf8.toUtf8(value);
+    final _field = field.toNativeUtf8();
+    final _value = value.toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
@@ -161,9 +161,9 @@ class SearchEngine {
 
   /// update a specify document by giving a field of string and it's value
   Future<void> updateByString(String field, String value, String doc) async {
-    final _field = Utf8.toUtf8(field);
-    final _value = Utf8.toUtf8(value);
-    final _doc = Utf8.toUtf8(doc);
+    final _field = field.toNativeUtf8();
+    final _value = value.toNativeUtf8();
+    final _doc = doc.toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
@@ -182,8 +182,8 @@ class SearchEngine {
 
   /// update a specify document by giving a field of string and it's value
   Future<void> updateByU64(String field, int value, String doc) async {
-    final _field = Utf8.toUtf8(field);
-    final _doc = Utf8.toUtf8(doc);
+    final _field = field.toNativeUtf8();
+    final _doc = doc.toNativeUtf8();
     final completer = Completer<dynamic>();
     final sendPort = singleCompletePort(completer);
 
