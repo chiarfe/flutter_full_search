@@ -4,14 +4,11 @@ import 'package:isolate/ports.dart';
 import 'dart:ffi';
 import 'dart:async';
 import 'dart:convert';
-import 'package:frusty_logger/frusty_logger.dart';
 
 class SearchEngine {
   /// setup the engine prerequisities
   static setup() {
     native.store_dart_post_cobject(NativeApi.postCObject);
-    FrustyLogger.init(native.dl);
-    FrustyLogger.addListener(print);
     print("Setup Done");
   }
 
