@@ -1,9 +1,10 @@
 import 'ffi.dart' as native;
 import 'package:ffi/ffi.dart';
-import 'package:isolate/ports.dart';
 import 'dart:ffi';
 import 'dart:async';
 import 'dart:convert';
+
+import 'isolate_helper.dart';
 
 class SearchEngine {
   /// setup the engine prerequisities

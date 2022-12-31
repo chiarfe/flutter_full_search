@@ -1,18 +1,14 @@
 name: full_search
 description: A new flutter plugin project.
 version: 0.0.1
-author:
-homepage:
 
 environment:
   sdk: ">=2.17.5 <3.0.0"
-  flutter: ">=1.20.0"
 
 dependencies:
   flutter:
     sdk: flutter
   ffi: ^2.0.1
-  isolate: ^2.1.1
 
 
 dev_dependencies:
